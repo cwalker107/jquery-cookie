@@ -103,14 +103,12 @@
 	};
 
 	$.cookie.enabled = (function() {
-		var enabled = navigator.cookieEnabled;
-
-		if(typeof enabled === undefined && !enabled) {
-			document.cookie = 'test';
-			enabled = (document.cookie.indexOf('test') !== -1) ? true : false;
+		$.cookie("cookieEnabledCheck", "set");
+		if($.cookie("cookieEnabledCheck") !== "set") {
+			return false;
 		}
-
-		return enabled;
+		$.removeCookie("cookieEnabledCheck");
+		return true;
 	})();
 
 	config.defaults = {};
