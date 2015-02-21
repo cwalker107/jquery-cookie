@@ -102,15 +102,6 @@
 		return result;
 	};
 
-	$.cookie.enabled = (function() {
-		$.cookie("cookieEnabledCheck", "set");
-		if($.cookie("cookieEnabledCheck") !== "set") {
-			return false;
-		}
-		$.removeCookie("cookieEnabledCheck");
-		return true;
-	})();
-
 	config.defaults = {};
 
 	$.removeCookie = function (key, options) {
@@ -122,4 +113,13 @@
 		$.cookie(key, '', $.extend({}, options, { expires: -1 }));
 		return !$.cookie(key);
 	};
+	
+	$.cookie.enabled = (function() {
+		$.cookie("cookieEnabledCheck", "set");
+		if($.cookie("cookieEnabledCheck") !== "set") {
+			return false;
+		}
+		$.removeCookie("cookieEnabledCheck");
+		return true;
+	})();
 }));
